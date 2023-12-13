@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #calculator {
+      background-color: navy;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+    }
+
+    #output {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 18px;
+      text-align: right;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 60px;
+      height: 40px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <div id="output"></div>
+    <button onclick="clearOutput()">C</button>
+    <button onclick="appendToOutput('/')">/</button>
+    <button onclick="appendToOutput('*')">*</button>
+    <button onclick="appendToOutput('7')">7</button>
+    <button onclick="appendToOutput('8')">8</button>
+    <button onclick="appendToOutput('9')">9</button>
+    <button onclick="appendToOutput('-')">-</button>
+    <button onclick="appendToOutput('4')">4</button>
+    <button onclick="appendToOutput('5')">5</button>
+    <button onclick="appendToOutput('6')">6</button>
+    <button onclick="appendToOutput('+')">+</button>
+    <button onclick="appendToOutput('1')">1</button>
+    <button onclick="appendToOutput('2')">2</button>
+    <button onclick="appendToOutput('3')">3</button>
+    <button onclick="openParenthesis()"> ( </button>
+    <button onclick="appendToOutput('0')">0</button>
+    <button onclick="appendToOutput('.')">.</button>
+    <button onclick="closeParenthesis()"> ) </button>
+    <button onclick="calculateResult()">=</button>
+    <button onclick="appendToOutput('Math.sin(')">sin</button>
+    <button onclick="appendToOutput('Math.cos(')">cos</button>
+    <button onclick="appendToOutput('Math.tan(')">tan</button>
+    <button onclick="appendToOutput('Math.sqrt(')">√</button>
+  </div>
+
+  <script>
+    let output = document.getElementById('output');
+
+    function appendToOutput(value) {
+      output.innerText += value;
+    }
+
+    function clearOutput() {
+      output.innerText = '';
+    }
+
+    function openParenthesis() {
+      appendToOutput('(');
+    }
+
+    function closeParenthesis() {
+      appendToOutput(')');
+    }
+
+    function calculateResult() {
+      try {
+        output.innerText = eval(output.innerText);
+      } catch (error) {
+        output.innerText = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
