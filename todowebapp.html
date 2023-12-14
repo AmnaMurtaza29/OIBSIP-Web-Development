@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #ffffff; /* White */
+      color: #001f3f; /* Navy Blue */
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #todo-app {
+      width: 400px;
+      background-color: #f0f8ff; /* Alice Blue */
+      border: 2px solid #001f3f; /* Navy Blue */
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #todo-header {
+      background-color: #001f3f; /* Navy Blue */
+      color: #ffffff; /* White */
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    #todo-container {
+      padding: 20px;
+    }
+
+    #todo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .todo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #001f3f; /* Navy Blue */
+    }
+
+    .todo-item:last-child {
+      border-bottom: none;
+    }
+
+    .todo-item input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    #add-todo {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      outline: none;
+      border: 1px solid #001f3f; /* Navy Blue */
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="todo-app">
+  <div id="todo-header">Todo List</div>
+  <div id="todo-container">
+    <ul id="todo-list"></ul>
+    <input type="text" id="add-todo" placeholder="Add a new todo...">
+  </div>
+</div>
+
+<script>
+  const todoList = document.getElementById('todo-list');
+  const addTodoInput = document.getElementById('add-todo');
+
+  addTodoInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter' && addTodoInput.value.trim() !== '') {
+      addTodoItem(addTodoInput.value.trim());
+      addTodoInput.value = '';
+    }
+  });
+
+  function addTodoItem(text) {
+    const todoItem = document.createElement('li');
+    todoItem.className = 'todo-item';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+
+    const todoText = document.createElement('span');
+    todoText.textContent = text;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', function() {
+      todoList.removeChild(todoItem);
+    });
+
+    todoItem.appendChild(checkbox);
+    todoItem.appendChild(todoText);
+    todoItem.appendChild(deleteButton);
+
+    todoList.appendChild(todoItem);
+  }
+</script>
+
+</body>
+</html>
